@@ -50,3 +50,17 @@ variable "swap_usage_threshold" {
 
   # 256 Megabyte in Byte
 }
+
+variable "db_events" {
+  description = "List of db events that will be published to the SNS topic"
+  type        = "list"
+
+  default = [
+    "failover",
+    "failure",
+    "low storage",
+    "maintenance",
+    "notification",
+    "recovery",
+  ]
+}

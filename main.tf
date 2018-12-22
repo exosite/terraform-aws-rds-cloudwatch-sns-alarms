@@ -19,14 +19,7 @@ resource "aws_db_event_subscription" "default" {
   source_type = "db-instance"
   source_ids  = ["${var.db_instance_id}"]
 
-  event_categories = [
-    "failover",
-    "failure",
-    "low storage",
-    "maintenance",
-    "notification",
-    "recovery",
-  ]
+  event_categories = "${var.db_events}"
 
   depends_on = ["aws_sns_topic_policy.default"]
 }
