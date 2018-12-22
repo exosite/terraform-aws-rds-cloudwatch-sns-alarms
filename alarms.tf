@@ -135,3 +135,11 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
     DBInstanceIdentifier = "${var.db_instance_id}"
   }
 }
+
+data "aws_db_instance" "db_instance" {
+  db_instance_identifier = "${var.db_instance_id}"
+}
+
+#TODO lookup memory of instance
+#TODO cal max connection
+#TODO setup alarm for connection count
