@@ -206,7 +206,7 @@ locals {
     "db.r5.2xlarge"   = 64
   }
 
-  memory_gb = "${lookup(local.memory_mapping, data.aws_db_instance.db_instance_class)}"
+  memory_gb = "${lookup(local.memory_mapping, data.aws_db_instance.db_instance.db_instance_class)}"
 
   # for postgres
   connection_per_gb = 112.653201547
