@@ -6,6 +6,7 @@ variable "db_instance_id" {
 variable "topic_arn" {
   description = "Optional topic arn for the existing topic"
   type        = "string"
+  default     = ""
 }
 
 variable "burst_balance_threshold" {
