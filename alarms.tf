@@ -7,7 +7,7 @@ locals {
     FreeableMemoryThreshold   = "${max(var.freeable_memory_threshold, 0)}"
     FreeStorageSpaceThreshold = "${max(var.free_storage_space_threshold, 0)}"
     SwapUsageThreshold        = "${max(var.swap_usage_threshold, 0)}"
-    ConnectionThreshold       = "${min(mac(var.connection_threshold, 0), 100)}"
+    ConnectionThreshold       = "${min(max(var.connection_threshold, 0), 100)}"
   }
 }
 
@@ -209,7 +209,7 @@ locals {
   memory_gb = "${lookup(local.memory_mapping, data.aws_db_instance.db_instance.db_instance_class)}"
 
   # for postgres
-  connection_per_gb = 112.653201547
+  connection_per_gb = 112
   max_connection    = "${local.memory_gb * local.connection_per_gb}"
 }
 
