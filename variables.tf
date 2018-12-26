@@ -3,6 +3,11 @@ variable "db_instance_id" {
   type        = "string"
 }
 
+variable "topic_arn" {
+  description = "Optional topic arn for the existing topic"
+  type        = "string"
+}
+
 variable "burst_balance_threshold" {
   description = "The minimum percent of General Purpose SSD (gp2) burst-bucket I/O credits available."
   type        = "string"
