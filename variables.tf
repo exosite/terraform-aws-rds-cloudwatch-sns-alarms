@@ -51,6 +51,12 @@ variable "swap_usage_threshold" {
   # 256 Megabyte in Byte
 }
 
+variable "connection_threshold" {
+  description = "The maximum usage of DB connection"
+  type        = "string"
+  default     = 50
+}
+
 variable "db_events" {
   description = "List of db events that will be published to the SNS topic"
   type        = "list"
