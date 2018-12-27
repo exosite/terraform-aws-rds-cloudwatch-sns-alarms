@@ -8,7 +8,8 @@
 data "aws_caller_identity" "default" {}
 
 locals {
-  topic_arn = "${var.topic_arn == "" ? aws_sns_topic.default.arn : var.topic_arn}"
+  default_topic_arn = "${element(concat(aws_sns_topic.default.*.arn, list("")), 0)}"
+  topic_arn = "${var.topic_arn == "" ? local.default_topic_arn : var.topic_arn}"
 }
 
 # Make a topic
