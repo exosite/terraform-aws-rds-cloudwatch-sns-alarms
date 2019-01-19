@@ -76,3 +76,9 @@ variable "db_events" {
     "recovery",
   ]
 }
+
+variable "treat_missing_data" {
+  description = "how to treat missing data"
+  type        = "string"
+  default     = "missing"
+}

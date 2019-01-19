@@ -23,6 +23,7 @@ resource "aws_cloudwatch_metric_alarm" "burst_balance_too_low" {
   alarm_description   = "Average database storage burst balance over last 10 minutes too low, expect a significant performance drop soon"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -41,6 +42,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
   alarm_description   = "Average database CPU utilization over last 10 minutes too high"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -59,6 +61,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_credit_balance_too_low" {
   alarm_description   = "Average database CPU credit balance over last 10 minutes too low, expect a significant performance drop soon"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -77,6 +80,7 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
   alarm_description   = "Average database disk queue depth over last 10 minutes too high, performance may suffer"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -95,6 +99,7 @@ resource "aws_cloudwatch_metric_alarm" "freeable_memory_too_low" {
   alarm_description   = "Average database freeable memory over last 10 minutes too low, performance may suffer"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -113,6 +118,7 @@ resource "aws_cloudwatch_metric_alarm" "free_storage_space_too_low" {
   alarm_description   = "Average database free storage space over last 10 minutes too low"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -131,6 +137,7 @@ resource "aws_cloudwatch_metric_alarm" "swap_usage_too_high" {
   alarm_description   = "Average database swap usage over last 10 minutes too high, performance may suffer"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
@@ -142,7 +149,7 @@ data "aws_db_instance" "db_instance" {
 }
 
 locals {
-# floor to nearest GB, set to 1 if < 1 GB
+  # floor to nearest GB, set to 1 if < 1 GB
   memory_mapping = {
     "db.t2.micro"     = 1
     "db.t1.micro"     = 1
@@ -228,6 +235,7 @@ resource "aws_cloudwatch_metric_alarm" "connection_usage_too_high" {
   alarm_description   = "Average database connection usage over last 10 minutes too high, performance may suffer"
   alarm_actions       = ["${local.topic_arn}"]
   ok_actions          = ["${local.topic_arn}"]
+  treat_missing_data  = "${var.treat_missing_data}"
 
   dimensions {
     DBInstanceIdentifier = "${var.db_instance_id}"
